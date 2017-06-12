@@ -1,0 +1,30 @@
+{
+    "name": "rap-axios-plugin",
+    "version": "1.0.0",
+    "description": "axios plugin for RAP",
+    "author": "tlzzu",
+    "keywords": [
+        "axios",
+        "RAP",
+        "Nodejs",
+        "Plugin",
+        "mockjs"
+    ],
+    "contributors": [
+        "tlzzu <tlzzu@outlook.com>"
+    ],
+    "dependencies": {
+        "mockjs": "*",
+        "axios": "*",
+        "xmlhttprequest": "*"
+    },
+    "main": "src/index.js",
+    "scripts": {
+        "test": "node test/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tlzzu/rap-axios-plugin.git"
+    },
+    "devDependencies": {}
+}
