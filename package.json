@@ -1,6 +1,6 @@
 {
     "name": "rap-axios-plugin",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "axios plugin for RAP",
     "author": "tlzzu",
     "keywords": [
@@ -15,8 +15,7 @@
     ],
     "dependencies": {
         "mockjs": "*",
-        "axios": "*",
-        "xmlhttprequest": "*"
+        "axios": "*"
     },
     "main": "src/index.js",
     "scripts": {
@@ -25,6 +24,10 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/tlzzu/rap-axios-plugin.git"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/wangjeaf/rap-node-plugin/issues"
     },
     "devDependencies": {}
 }
