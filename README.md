@@ -73,12 +73,12 @@ rapaxios.all([getTest(), postTest()])
 ## 完整配置参数
 ```js
  const defaultOptions = {
-    rootUrl: 'http://rapapi.org', //默认为这个地址
-    mock: 'mockjs',
-    projectId: '',
-    requestUrl: '',
-    ismock: true,
-    method: 'GET',
+    rootUrl: 'http://rapapi.org', //默认为淘宝mockjs地址
+    mock: 'mockjs',//taobao mockjs的地址
+    projectId: '',//项目id
+    requestUrl: '',//请求的路径，即在mockjs中配置的请求路径
+    ismock: true,//是否开启mock模式
+    method: 'GET',//默认请求方式
     params: undefined //参数
 }
 ```
