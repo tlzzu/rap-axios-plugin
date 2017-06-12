@@ -1,6 +1,6 @@
 # Logs
 logs
 *.log
-.bat
+vscode.bat
 .vscode/
 node_modules/
