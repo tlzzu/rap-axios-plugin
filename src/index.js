@@ -136,11 +136,11 @@ const initXMLHttpRequest = function(isMock) {
         XMLHttpRequest.prototype.__defineGetter__('responseText', function() {
             // let obj = !this.responseType || this.responseType === 'text' ? this.responseText : this.response;
             // if (typeof obj === 'object') obj = JSON.stringify(obj); //转换成字符串
-            debugger;
+            //debugger;
             return mockjs.mock(JSON.parse(this.responseText));
         });
         XMLHttpRequest.prototype.__defineGetter__('response', function() {
-            debugger;
+            //debugger;
             return mockjs.mock(this.response);
         });
     } else {
