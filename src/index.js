@@ -11,7 +11,7 @@ const defaultOptions = {
     method: 'GET',
     params: undefined //参数
 };
-let currentOpt = defaultOptions;
+var currentOpt = defaultOptions;
 // /**
 //  * 根据method 获取新配置参数
 //  * @param {Object} opt defaultOptions默认配置
@@ -22,7 +22,7 @@ let currentOpt = defaultOptions;
  * @param {Object} defaultOpt defaultOptions默认配置
  */
 const getNewOptions = function(opt, defaultOpt) {
-    let newOpt = deepCopy(defaultOpt, opt);
+    var newOpt = deepCopy(defaultOpt, opt);
     if (newOpt.method === 'GET' && newOpt.params) {
         newOpt.requestUrl = getParamsUrl(newOpt.requestUrl, newOpt);
     } else if (newOpt.method === 'POST') {
@@ -35,7 +35,7 @@ const getNewOptions = function(opt, defaultOpt) {
  * @param {Object} opt 配置参数 结构类似 defaultOptions
  */
 const getRequestUrl = function(opt) {
-    let arr = [];
+    var arr = [];
     if (opt.rootUrl !== '') arr.push(opt.rootUrl);
     if (opt.mock !== '') arr.push(opt.mock);
     if (opt.projectId !== '') arr.push(opt.projectId);
@@ -49,9 +49,9 @@ const getRequestUrl = function(opt) {
  * @param {Object} options 参数
  */
 const getParamsUrl = function(url, options) {
-    let param = [];
+    var param = [];
     if (options && options !== null && options.params) {
-        for (let p in options.params) {
+        for (var p in options.params) {
             param.push(p + '=' + options.params[p]);
         }
     }
@@ -64,7 +64,7 @@ const getParamsUrl = function(url, options) {
  * 第二个及第二个之后的都是是变动的值，最后会融合进default里面
  */
 const deepCopy = function() {
-    let src, copyIsArray, copy, name, options, clone,
+    var src, copyIsArray, copy, name, options, clone,
         target = arguments[0] || {},
         i = 1,
         length = arguments.length,
@@ -134,7 +134,7 @@ const initXMLHttpRequest = function(isMock) {
     if (typeof XMLHttpRequest === 'undefined') return;
     if (isMock) {
         XMLHttpRequest.prototype.__defineGetter__('responseText', function() {
-            // let obj = !this.responseType || this.responseType === 'text' ? this.responseText : this.response;
+            // var obj = !this.responseType || this.responseType === 'text' ? this.responseText : this.response;
             // if (typeof obj === 'object') obj = JSON.stringify(obj); //转换成字符串
             //debugger;
             return mockjs.mock(JSON.parse(this.responseText));
@@ -169,7 +169,7 @@ var rapaxios = {
         if (!options) options = {};
         options['method'] = "GET";
         options.requestUrl = url;
-        let o = getNewOptions(options, currentOpt);
+        var o = getNewOptions(options, currentOpt);
         initXMLHttpRequest(o.ismock);
         return axios.get(getRequestUrl(o));
     },
@@ -177,10 +177,10 @@ var rapaxios = {
      * post请求
      */
     post: function(url, params) {
-        let options = {};
+        var options = {};
         options.method = "POST";
         options.requestUrl = url;
-        let o = getNewOptions(options, currentOpt);
+        var o = getNewOptions(options, currentOpt);
         initXMLHttpRequest(o.ismock);
         return axios.post(getRequestUrl(o), params);
     },
