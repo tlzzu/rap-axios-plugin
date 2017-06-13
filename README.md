@@ -1,5 +1,6 @@
 # rap-axios-plugin
 axios plugin for RAP
+对axios的扩展，对axios的返回值进行mock。默认使用taobao官方的RAP服务。
 
 ## 安装
 
@@ -84,3 +85,7 @@ rapaxios.all([getTest(), postTest()])
 ```
 ## 说明
 目前实现了axios的 get、post、all接口。仅对浏览器的 XMLHttpRequest 对象进行了扩展。未对axios的http请求做扩展。
+
+## 依赖
+mockjs
+axios
