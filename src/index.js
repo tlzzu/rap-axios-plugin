@@ -132,23 +132,34 @@ const deepCopy = function() {
  */
 const initXMLHttpRequest = function(isMock) {
     if (typeof XMLHttpRequest === 'undefined') return;
+    // if (isMock) {
+    //     XMLHttpRequest.prototype.__defineGetter__('responseText', function() {
+    //         var temp = this.response;
+    //         if (this.response === '') return '';
+    //         if (typeof this.response === 'string') temp = JSON.parse(this.response);
+    //         return JSON.stringify(mockjs.mock(temp));
+    //     });
+    // } else {
+    //     XMLHttpRequest.prototype.responseText = "";
+    // }
     if (isMock) {
-        XMLHttpRequest.prototype.__defineGetter__('responseText', function() {
-            // var obj = !this.responseType || this.responseType === 'text' ? this.responseText : this.response;
-            // if (typeof obj === 'object') obj = JSON.stringify(obj); //转换成字符串
-            //debugger;
-            return mockjs.mock(JSON.parse(this.responseText));
-        });
-        XMLHttpRequest.prototype.__defineGetter__('response', function() {
-            //debugger;
-            return mockjs.mock(this.response);
+        //responseText 本身只有getter，是只读的属性
+        Object.defineProperty(XMLHttpRequest.prototype, 'responseText', {
+            get: function() {
+                var temp = this.response;
+                if (this.response === '') return '';
+                if (typeof this.response === 'string') temp = JSON.parse(this.response);
+                return JSON.stringify(mockjs.mock(temp));
+            }
         });
     } else {
-        XMLHttpRequest.prototype.__defineGetter__('responseText', function() {
-            return this.responseText;
-        });
-        XMLHttpRequest.prototype.__defineGetter__('response', function() {
-            return this.response;
+        Object.defineProperty(XMLHttpRequest.prototype, 'responseText', {
+            get: function() {
+                var temp = this.response;
+                if (this.response === '') return '';
+                if (typeof this.response === 'string') return this.response;
+                else return JSON.stringify(temp);
+            }
         });
     }
 };
